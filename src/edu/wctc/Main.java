@@ -30,6 +30,7 @@ public class Main {
                     break;
                 case 3:
                     periodDifference();
+                    break;
 
             }
 
