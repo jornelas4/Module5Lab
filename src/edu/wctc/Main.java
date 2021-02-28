@@ -1,6 +1,7 @@
 package edu.wctc;
-
-import java.time.*;
+import java.lang.invoke.LambdaConversionException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
 public class Main {
@@ -18,7 +19,7 @@ public class Main {
         do {
             choice = doMenu();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     calculateReleaseDate(releaseDate);
                     break;
@@ -28,23 +29,21 @@ public class Main {
                     calculateDifference(releaseDate, secondReleaseDate);
                     break;
                 case 3:
-                    LocalDate secondAlbum = LocalDate.parse("1988-10-10");
-                    LocalDate thirdAlbum = LocalDate.of(1, 7,1);
-                    periodBetween(thirdAlbum, secondAlbum);
+                    periodDifference();
 
-                default:
             }
 
-        }while (choice != 4);
+        } while (choice != 4);
+
+
 
     }
 
 
-
-    public static int doMenu(){
+    public static int doMenu() {
         System.out.println("1. Calculate The Joshua Tree release date");
         System.out.println("2. Calculate time between The Joshua Terr and Rattle and Hum");
-        System.out.println("3. Calculate they time between Rattle and Hum and third Album");
+        System.out.println("3. Calculate the time between Rattle and Hum and third Album");
         System.out.println("4. Exit");
 
         System.out.print("Enter choice:");
@@ -54,7 +53,7 @@ public class Main {
 
     }
 
-    public  static void calculateReleaseDate(LocalDate releaseDate){
+    public static void calculateReleaseDate(LocalDate releaseDate) {
 
         LocalDate now = LocalDate.now();
 
@@ -68,7 +67,7 @@ public class Main {
 
     }
 
-    public  static LocalDate getDate(){
+    public static LocalDate getDate() {
         System.out.print("Enter year: ");
         int year = Integer.parseInt(keyboard.nextLine());
 
@@ -93,21 +92,21 @@ public class Main {
         difference = Period.between(firstAlbum, nextAlbum);
         System.out.printf(formatString, difference.getYears(), difference.getMonths(), difference.getDays());
 
-
-
-
     }
 
-    public static void periodBetween(LocalDate secondAlbum, LocalDate thirdAlbum){
+    public static void periodDifference(){
+        String outPut;
+        Period difference;
 
+        LocalDate firstAlbum = LocalDate.of(1987,03,9);
+        LocalDate secondAlbum = LocalDate.of(1988,10,10);
+        difference = Period.between(firstAlbum, secondAlbum);
 
+        outPut = "The third album was released on: ";
+        LocalDate thirdAlbumRelease = secondAlbum.plusYears(difference.getYears()).plusMonths(difference.getMonths()).plusDays(difference.getDays());
 
-        Period period = Period.between( thirdAlbum, secondAlbum);
-        System.out.printf("The third album was released on %d year/s, %d months, %d days.\n",
-                period.getYears(), period.getMonths(), period.getDays());
+        System.out.println( outPut + thirdAlbumRelease);
+
     }
-
-
-
 
 }
